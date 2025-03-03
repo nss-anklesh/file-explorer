@@ -11,3 +11,72 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.main-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+aside {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.folder, .file {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.folder span, .file span {
+  margin-left: 10px;
+}
+.explorer-table {
+  width: 100%;
+  border-radius: 7px;
+}
+.explorer-table thead {
+  background: #f4f4f4;
+  border-radius: 5px 0 5px 0;
+}
+.explorer-table tr td,
+.explorer-table tr th {
+  padding: 0.5rem 1rem;
+  border-left-color: #c1c1c1;
+  border-bottom: 1px solid #c1c1c1;
+}
+.btn {
+  padding: 5px 1rem;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c1c1c1;
+  transition: all 0.4s ease-in-out
+}
+.btn.edit-btn {
+  color: #ffffff;
+  background-color: #408ab8;
+  border-color: #408ab8;
+}
+.btn.delete-btn {
+  color: #ffffff;
+  background-color: #dc4d37;
+  border-color: #dc4d37;
+}
+.btn.edit-btn:hover {
+  background-color: transparent;
+  color: #404040;
+}
+.btn.delete-btn:hover {
+  background-color: transparent;
+  color: #dc4d37;
+}
+.ml-10 {
+  margin-left: 10px;
+}
