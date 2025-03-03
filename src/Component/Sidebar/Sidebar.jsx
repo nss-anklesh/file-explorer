@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaFolder, FaFolderOpen } from "react-icons/fa";
+import "./Sidebar.css";
 
 const Sidebar = ({ node, onFolderSelect, selectedFolder }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -16,46 +17,43 @@ const Sidebar = ({ node, onFolderSelect, selectedFolder }) => {
     }
   };
 
-  if (node.name === "root") {
-    return (
-      <div>
-        {node.children.map(
-          (child) =>
-            child.type === "folder" && (
-              <Sidebar
-                key={child.name}
-                node={child}
-                onFolderSelect={onFolderSelect}
-                selectedFolder={selectedFolder}
-              />
-            )
-        )}
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <ul>
-      <li
+    <div className="sidebar-list-wrapper">
+      <div
         onClick={handleToggle}
+        className="slidebar-list"
         style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
       >
-        {node.type === "folder" ? (
-          selectedFolder?.name === node.name  ? <FaFolderOpen /> : <FaFolder />
-        ) : null}
-        <span
-          onClick={handleFolderClick}
-          style={{
-            marginLeft: "10px",
-            fontWeight: selectedFolder?.name === node.name ? "bold" : "normal",
-          }}
-        >
-          {node.name}
-        </span>
-      </li>
-      
-      </ul>
+        <div className="sidebar-item">
+          {node.type === "folder" ? (
+            isExpanded ? <FaFolderOpen /> : <FaFolder />
+          ) : null}
+          <span
+            onClick={handleFolderClick}
+            style={{
+              marginLeft: "10px",
+              fontWeight: selectedFolder?.name === node.name ? "bold" : "normal",
+            }}
+          >
+            {node.name}
+          </span>
+        </div>
+      </div>
+      {isExpanded && node.children && (
+        <div style={{ marginLeft: "20px" }}>
+          {node.children.map(
+            (child) =>
+              child.type === "folder" && (
+                <Sidebar
+                  key={child.name}
+                  node={child}
+                  onFolderSelect={onFolderSelect}
+                  selectedFolder={selectedFolder}
+                />
+              )
+          )}
+        </div>
+      )}
     </div>
   );
 };
